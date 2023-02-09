@@ -43,37 +43,36 @@ class CustomPhotoPreviewItemWidgetState extends State<CustomPhotoPreviewItemWidg
           double initialScale = 1.0;
           if (state.extendedImageInfo != null) {
             initialScale = initScale(
-                size: size,
-                initialScale: initialScale,
-                imageSize: Size(
-                    state.extendedImageInfo!.image.width.toDouble(), state.extendedImageInfo!.image.height.toDouble()));
+              size: size,
+              initialScale: initialScale,
+              imageSize: Size(
+                state.extendedImageInfo!.image.width.toDouble(),
+                state.extendedImageInfo!.image.height.toDouble(),
+              ),
+            );
           }
           return GestureConfig(
-              inPageView: true,
-              initialScale: 1.0,
-              maxScale: max(initialScale, 5.0),
-              minScale: 1.0,
-              animationMinScale: 0.5,
-              animationMaxScale: max(initialScale, 5.0),
-              initialAlignment: InitialAlignment.center,
-              //you can cache gesture state even though page view page change.
-              //remember call clearGestureDetailsCache() method at the right time.(for example,this page dispose)
-              cacheGesture: false);
+            inPageView: true,
+            initialScale: 1.0,
+            maxScale: max(initialScale, 5.0),
+            minScale: 1.0,
+            animationMinScale: 0.5,
+            animationMaxScale: max(initialScale, 5.0),
+            initialAlignment: InitialAlignment.center,
+            cacheGesture: false,
+          );
         },
         onDoubleTap: (ExtendedImageGestureState state) {
           var pointerDownPosition = state.pointerDownPosition;
           double? begin = state.gestureDetails?.totalScale;
           double end;
 
-          //remove old
           if (animationListener != null) {
             _animation?.removeListener(animationListener!);
           }
 
-          //stop pre
           _animationController.stop();
 
-          //reset to use
           _animationController.reset();
 
           if (begin == doubleTapScales[0]) {

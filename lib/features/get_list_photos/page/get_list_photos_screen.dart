@@ -22,8 +22,6 @@ class GetListPhotosScreenState extends State<GetListPhotosScreen> {
   void initState() {
     super.initState();
     _controller = Get.find<GetListPhotosController>();
-    // final String accessToken = Get.arguments as String;
-    // _controller.accessToken = accessToken;
     _controller.getListPhotos();
   }
 

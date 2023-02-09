@@ -15,17 +15,13 @@ void injection() {
 
   /// Controller
   Get.lazyPut(() => GetListPhotosController(getIt()), fenix: true);
-  // Get.lazyPut(() => AuthController(getIt()), fenix: true);
 
   /// Use case
-  // getIt.registerLazySingleton<AuthUseCase>(() => AuthUseCaseImpl(getIt()));
   getIt.registerLazySingleton<PhotoUseCase>(() => PhotoUseCaseImpl(getIt()));
 
   /// Repository
-  // getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(getIt()));
   getIt.registerLazySingleton<PhotoRepository>(() => PhotoRepositoryImpl(getIt()));
 
   /// Client
-  // getIt.registerLazySingleton<AuthClient>(() => AuthClientImpl());
   getIt.registerLazySingleton<PhotoClient>(() => PhotoClientImpl());
 }
