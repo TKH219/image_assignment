@@ -5,6 +5,7 @@ import 'package:image_assignment/features/get_list_photos/widgets/photo_item_wid
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../components/custom_header_smart_refresher.dart';
+import '../../preview_image/page/custom_photo_view_gallery.dart';
 import '../controller/get_list_photos_controller.dart';
 
 class GetListPhotosScreen extends StatefulWidget {
@@ -39,22 +40,29 @@ class GetListPhotosScreenState extends State<GetListPhotosScreen> {
       body: GetBuilder<GetListPhotosController>(
         builder: (controller) {
           return SmartRefresher(
-              controller: _refreshController,
-              enablePullUp: _controller.isLoadMore,
-              enablePullDown: false,
-              onLoading: onLoading,
-              header: const CustomHeaderSmartRefresher(),
-              child: ListView.builder(
-                itemCount: _controller.listPhotosDisplay.length,
-                itemBuilder: (context, index) {
-                  return PhotoItemWidget(model: _controller.listPhotosDisplay[index]);
-                },
-              ));
+            controller: _refreshController,
+            enablePullUp: _controller.isLoadMore,
+            enablePullDown: false,
+            onLoading: onLoading,
+            header: const CustomHeaderSmartRefresher(),
+            child: ListView.builder(
+              itemCount: _controller.listPhotosDisplay.length,
+              itemBuilder: (context, index) {
+                return PhotoItemWidget(
+                  model: _controller.listPhotosDisplay[index],
+                  onTap: () => Get.to(
+                    () => CustomPhotoViewGallery(
+                      model: _controller.listPhotosDisplay[index],
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
         },
       ),
     );
   }
-
 
   Future<void> onLoading() async {
     await _controller.getListPhotos();
