@@ -17,6 +17,7 @@ Apply Clean Architecture + GetX pattern + Flutter 3.7.0
 3. The user has an infinite scroll on the gallery screen.
 4. Zoom in/out when double tap on image preview.
 5. Handle orientation for preview image.
+6. Cache Image for list photo and preview screen.
 
 ## Q&A
 1. What would be your Ideal CI/CD Pipeline for this Application?
